@@ -52,7 +52,7 @@ cur.execute("select last_date from tracker where id=%s" % (id))
 date = cur.fetchall()[0][0] #last_date will give the last date the user logged a habit, and we need to check if the user has logged a habit on the current date or not, if not then we need to reset the habits left to be logged for the new day
 if dt.date.today() != date:
     l = [] #l will be the list of habits of the specified id
-    cur.execute("select habits_left from h_updater where id=%s" % (id))
+    cur.execute("select habits from tracker where id=%s" % (id))
     data_sql = cur.fetchall()
     data = data_sql[0][0].split(',') #Splitting because data_sql will be a single string of habits, each seperated by a space, and we want to convert it into a list of habits
     for i in data:
